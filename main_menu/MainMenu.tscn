@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://main_menu/assets/bg_static.png" type="Texture" id=1]
-[ext_resource path="res://main_menu/assets/sun.png" type="Texture" id=2]
-[ext_resource path="res://main_menu/assets/title.png" type="Texture" id=3]
-[ext_resource path="res://main_menu/assets/button_games.png" type="Texture" id=4]
-[ext_resource path="res://main_menu/assets/button_games_pressed.png" type="Texture" id=5]
-[ext_resource path="res://main_menu/assets/button_encyclopedia.png" type="Texture" id=6]
-[ext_resource path="res://main_menu/assets/button_encyclopedia_pressed.png" type="Texture" id=7]
-[ext_resource path="res://main_menu/assets/button_rescue.png" type="Texture" id=8]
-[ext_resource path="res://main_menu/assets/button_rescue_pressed.png" type="Texture" id=9]
-[ext_resource path="res://main_menu/assets/clouds.png" type="Texture" id=10]
-[ext_resource path="res://fade_in/FadeIn.tscn" type="PackedScene" id=11]
+[ext_resource path="res://main_menu/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://main_menu/assets/bg_static.png" type="Texture" id=2]
+[ext_resource path="res://main_menu/assets/sun.png" type="Texture" id=3]
+[ext_resource path="res://main_menu/assets/title.png" type="Texture" id=4]
+[ext_resource path="res://main_menu/assets/button_games.png" type="Texture" id=5]
+[ext_resource path="res://main_menu/assets/button_games_pressed.png" type="Texture" id=6]
+[ext_resource path="res://main_menu/assets/button_encyclopedia.png" type="Texture" id=7]
+[ext_resource path="res://main_menu/assets/button_encyclopedia_pressed.png" type="Texture" id=8]
+[ext_resource path="res://main_menu/assets/button_rescue.png" type="Texture" id=9]
+[ext_resource path="res://main_menu/assets/button_rescue_pressed.png" type="Texture" id=10]
+[ext_resource path="res://main_menu/assets/clouds.png" type="Texture" id=11]
+[ext_resource path="res://fade_in/FadeIn.tscn" type="PackedScene" id=12]
 
 [sub_resource type="GDScript" id=1]
 script/source = "# Code source:
@@ -46,17 +47,17 @@ func window_resize():
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 script = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -3.0
@@ -79,7 +80,7 @@ custom_constants/separation = 60
 [node name="Sun" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 margin_right = 1820.0
 margin_bottom = 300.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 360.0
@@ -90,7 +91,7 @@ margin_bottom = 481.0
 margin_left = 512.0
 margin_right = 1308.0
 margin_bottom = 121.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 541.0
@@ -103,26 +104,25 @@ margin_right = 1820.0
 margin_bottom = 53.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons/CenterContainer2"]
-margin_left = 790.0
-margin_right = 1030.0
+margin_left = 800.0
+margin_right = 1020.0
 margin_bottom = 53.0
-custom_constants/separation = 40
+custom_constants/separation = 20
 
 [node name="Games" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons/CenterContainer2/HBoxContainer"]
 margin_right = 150.0
 margin_bottom = 53.0
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
 
 [node name="Encyclopedia" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons/CenterContainer2/HBoxContainer"]
-margin_left = 190.0
-margin_right = 240.0
+margin_left = 170.0
+margin_right = 220.0
 margin_bottom = 53.0
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 7 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
 
 [node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/VBoxContainer/Buttons"]
-editor/display_folded = true
 margin_top = 73.0
 margin_right = 1820.0
 margin_bottom = 126.0
@@ -131,14 +131,15 @@ margin_bottom = 126.0
 margin_left = 791.0
 margin_right = 1029.0
 margin_bottom = 53.0
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 9 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
 
 [node name="Clouds" type="Sprite" parent="."]
 position = Vector2( 100, 30 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 centered = false
 
-[node name="FadeIn" parent="." instance=ExtResource( 11 )]
+[node name="FadeIn" parent="." instance=ExtResource( 12 )]
 visible = false
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/CenterContainer2/HBoxContainer/Games" to="." method="_on_Games_pressed"]
