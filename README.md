@@ -4,3 +4,5 @@
 Finalist submission for The First Ocean Park International Conservation STEAM Competition 2019.
 
 A work-in-progress game written using the Godot 3.1 game engine.
+
+Authors: Rocco Jiang and Katrina Tse
